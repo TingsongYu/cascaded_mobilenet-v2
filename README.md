@@ -2,7 +2,7 @@
 cascaded convolutional neural network for facial point detection
 
 # 1.简介
-本实验在caffe下，采用级联MobileNet-V2进行人脸关键点（5点）检测，单模型仅 956 KB，GTX1080上运行为6ms左右（未进行模型压缩和加速，简单压缩和加速后可在移动端达到实时检测）
+本实验在caffe下，采用级联MobileNet-V2进行人脸关键点（5点）检测，单模型仅 956 KB，GTX1080上运行为6ms左右（可在移动端达到实时检测）
 
 本实验采用两级MobileNet-V2进行，两级的MobileNet-V2采用相同的网络结构（因为懒），结构如下：
 
