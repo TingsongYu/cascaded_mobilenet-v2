@@ -16,8 +16,8 @@ cascaded convolutional neural network for facial point detection
 | 1x1x256  | fc |  -   | 10  | - |  -   |
 
 （MobileNet-v2 原文： https://arxiv.org/abs/1801.04381）<br/>
-（可参考博客：http://blog.csdn.net/u011995719/article/details/79135818）
-基本流程为，level_1负责初步检测，依据level_1得到的关键点，对原始图片进行裁剪，将裁剪后的图片输入到level_2，从而达到从粗到精的定位。
+（可参考博客：http://blog.csdn.net/u011995719/article/details/79135818）<br/>
+基本流程为，level_1负责初步检测，依据level_1得到的关键点，对原始图片进行裁剪，将裁剪后的图片输入到level_2，从而达到从粗到精的定位。<br/>
 ## level_1 流程为：
 ![image](https://github.com/tensor-yu/cascaded_mobilenet-v2/blob/master/readme_img/l1.PNG)
 
@@ -42,7 +42,7 @@ cascaded convolutional neural network for facial point detection
 
 ## (1) 修改 caffe源码
 本实验基于MobileNet-V2，因此需要给caffe添加新的layer，即depth-wise convolution，并且需要修改image_data_layer，使得其支持多标签输入
-(感谢 hpp,cpp,cu，prototxt提供者：suzhenghang  git地址：https://github.com/suzhenghang/MobileNetv2/tree/master/.gitignore)
+(感谢 hpp,cpp,cu，prototxt提供者：suzhenghang <br/> git地址：https://github.com/suzhenghang/MobileNetv2/tree/master/.gitignore)
 
 步骤,进入caffe_need/文件夹下，
 
@@ -54,10 +54,8 @@ cascaded convolutional neural network for facial point detection
 重新编译，并且配置python接口
 
 
-## (2) 直接进入 3_demo
-3_demo文件夹下含 Code、Data. Data中有deploy.prototxt、caffemodel和img
+## (2) 进入文件夹3_demo
 进入 3_demo/Code/,打开 inference , 更改你的caffe所在路径
-
 	sys.path.append('/home/xxx your caffe xxx/python')
 	sys.path.append('/home/xxx your caffe xxx/python/caffe')
 
