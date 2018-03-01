@@ -1,0 +1,25 @@
+net: "l2_mobilenet.prototxt"
+
+test_iter: 160 # bs = 128 * 2 
+test_interval: 1250  
+
+#base_lr: 0.0001
+base_lr:  0.001
+momentum: 0.9
+weight_decay: 0.0004
+
+type: "Adam"
+
+lr_policy: "multistep"
+#gamma: 0.9
+gamma:0.1
+stepvalue: 80000  #  40iter = 1 epoch 
+stepvalue: 100000
+#stepvalue: 250000
+
+display: 1000
+max_iter: 120000
+
+snapshot: 50000
+snapshot_prefix: "../../Result/solver_state/"
+solver_mode: GPU
