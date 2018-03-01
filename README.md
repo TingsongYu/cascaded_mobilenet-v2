@@ -18,6 +18,8 @@ cascaded convolutional neural network for facial point detection
 t表示“扩张”倍数，c表示输出通道数，n表示重复次数，s表示步长stride <br/>
 （MobileNet-v2 原文： https://arxiv.org/abs/1801.04381）<br/>
 （可参考博客：http://blog.csdn.net/u011995719/article/details/79135818）<br/>
+<br/>
+
 基本流程为，level_1负责初步检测，依据level_1得到的关键点，对原始图片进行裁剪，将裁剪后的图片输入到level_2，从而达到从粗到精的定位。<br/>
 ## level_1 流程为：
 ![image](https://github.com/tensor-yu/cascaded_mobilenet-v2/blob/master/readme_img/l1.PNG)
