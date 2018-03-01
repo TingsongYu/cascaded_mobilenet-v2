@@ -3,16 +3,36 @@ cascaded convolutional neural network for facial point detection
 
 # 1.简介
 本实验在caffe下，采用级联MobileNet-V2进行人脸关键点（5点）检测，单模型仅 956 KB，GTX1080上运行为6ms左右（未进行模型压缩和加速，简单压缩和加速后可在移动端达到实时检测）
+
+本实验采用两级MobileNet-V2进行，两级的MobileNet-V2采用相同的网络结构（因为懒），结构如下：
+| Input     |    Operator    | t  |c      |    n | s  |
+| :--------:| :--------:| :--: |:--------:| :--------:| :--: |
+| 48x48x3  | conv2d |  -   | 16  | 1 |  2   |
+| 24x24x16  | bottleneck |  6   | 24  | 2 |  2   |
+| 12x12x24  | bottleneck |  6   | 32  | 2 |  2   |
+| 6x6x32 | bottleneck |  6   | 64  | 2 |  2   |
+| 3x3x64  | fc |  -   | 256  | - |  -   |
+| 1x1x256  | fc |  -   | 10  | - |  -   |
+（MobileNet-v2 原文： https://arxiv.org/abs/1801.04381）
+
+基本流程为，level_1负责初步检测，依据level_1得到的关键点，对原始图片进行裁剪，将裁剪后的图片输入到level_2，从而达到从粗到精的定位。
+##level_1 流程为##：
+![image](https://github.com/tensor-yu/cascaded_mobilenet-v2/blob/master/readme_img/l1.PNG)
+
+##level_2 流程为##：
+![image](https://github.com/tensor-yu/cascaded_mobilenet-v2/blob/master/readme_img/l2.PNG)
+
+面部特写，绿色点为landmark，红色为level_1检测到的点，蓝色为level_2检测到的点，可以看出蓝色点更靠近绿色点
+
+![image](https://github.com/tensor-yu/cascaded_mobilenet-v2/blob/master/readme_img/ccnntexie.PNG)
+
+
+
 初步验证MobileNet-V2的有效性以及级联CNN进行人脸关键点检测的有效性
 
 数据来源：采用CelebA数据集，共计202599张图片，每张图片含5个关键点
 官网：http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html
 百度网盘下载：https://pan.baidu.com/s/1eSNpdRG#list/path=%2F
-
-训练数据：随机选取202599张中的80% 
-测试数据：剩余的20%
-
-模型：缩小版MobileNet-V2，level_1和level_2模型大小完全相同，输入均为48*48，详细请看prototxt
 
 实验结果：请直接看demo跑出来的图片。由于CelebA的图片较为复杂，并且本实验不需要采用人脸检测，因此无法与之前实验进行比较
 
@@ -78,14 +98,6 @@ sys.path.append('/home/xxx your caffe xxx/python/caffe')
 
 
 
-![image](https://github.com/tensor-yu/CCNN/blob/master/readme_img/000027.jpg)
 
 
-| Input     |    Operator    | t  |c      |    n | s  |
-| :--------:| :--------:| :--: |:--------:| :--------:| :--: |
-| 48x48x3  | conv2d |  -   | 16  | 1 |  2   |
-| 24x24x16  | bottleneck |  6   | 24  | 2 |  2   |
-| 12x12x24  | bottleneck |  6   | 32  | 2 |  2   |
-| 6x6x32 | bottleneck |  6   | 64  | 2 |  2   |
-| 3x3x64  | fc |  -   | 256  | - |  -   |
-| 1x1x256  | fc |  -   | 10  | - |  -   |
+
