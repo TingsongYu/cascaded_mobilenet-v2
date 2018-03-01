@@ -67,20 +67,20 @@ cascaded convolutional neural network for facial point detection
 简单介绍训练步骤，总共分三阶段，分别是 0_raw_data, 1_level_1, 2_level_2 
 
 第一阶段，数据准备阶段： 0_raw_data 
-第一步，从百度网盘下载好CelebA数据集，将CelebA\Img\img_celeba 复制到 0_raw_data/Data/ 下面，将CelebA\Anno\list_landmarks_celeba.txt复制到  0_raw_data/Data/ 并且重命名为celeba_label.txt <br>
-第二步，进入0_raw_data/, 运行divide_tr_te.py，将会划分好训练集，测试集，并且保存在0_raw_data/Data/ 下面 
-第三步，运行 draw_point.py，将会在 0_raw_data/Result/draw_img/下获得 打上关键点的图片，用来检查图片以及标签是否正确
+1. 从百度网盘下载好CelebA数据集，将CelebA\Img\img_celeba 复制到 0_raw_data/Data/ 下面，将CelebA\Anno\list_landmarks_celeba.txt复制到  0_raw_data/Data/ 并且重命名为celeba_label.txt
+2. 进入0_raw_data/, 运行divide_tr_te.py，将会划分好训练集，测试集，并且保存在0_raw_data/Data/ 下面 
+3. 运行 draw_point.py，将会在 0_raw_data/Result/draw_img/下获得 打上关键点的图片，用来检查图片以及标签是否正确
 
 
 第二阶段, 训练level_1： 1_level_1 
 
-进入 1_level_1/Code/，依次执行 0_gen_data, 1_draw_img, 2_train, 3_inference, 4_evaluate, 5_crop_img
-0_gen_data，主要是对图片进行resize，并且转换label，训练时的label是[-1,1]的
-1_draw_img,用来检查图片以及标签是否正确
-2_train,训练的solver等 
-3_inference,训练完毕，用训练好的caffemodel进行inference，将inference得到的标签 输出到 1_level_1/Result/下，用于评估和裁剪图片
-4_evaluate，计算误差
-5_crop_img, 采用level_1的输出标签 对原始图片进行裁剪，获得level_2的输入图片，并且制作level_2的标签
+	进入 1_level_1/Code/，依次执行 0_gen_data, 1_draw_img, 2_train, 3_inference, 4_evaluate, 5_crop_img
+	0_gen_data，主要是对图片进行resize，并且转换label，训练时的label是[-1,1]的
+	1_draw_img,用来检查图片以及标签是否正确
+	2_train,训练的solver等 
+	3_inference,训练完毕，用训练好的caffemodel进行inference，将inference得到的标签 输出到 1_level_1/Result/下，用于评估和裁剪图片
+	4_evaluate，计算误差
+	5_crop_img, 采用level_1的输出标签 对原始图片进行裁剪，获得level_2的输入图片，并且制作level_2的标签
 
 
 第三阶段，训练level_2，
