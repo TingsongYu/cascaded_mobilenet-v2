@@ -15,7 +15,7 @@ cascaded convolutional neural network for facial point detection
 | 3x3x64  | fc |  -   | 256  | - |  -   |
 | 1x1x256  | fc |  -   | 10  | - |  -   |
 
-（MobileNet-v2 原文： https://arxiv.org/abs/1801.04381）0
+（MobileNet-v2 原文： https://arxiv.org/abs/1801.04381）\
 （可参考博客：http://blog.csdn.net/u011995719/article/details/79135818）
 基本流程为，level_1负责初步检测，依据level_1得到的关键点，对原始图片进行裁剪，将裁剪后的图片输入到level_2，从而达到从粗到精的定位。
 ## level_1 流程为：
