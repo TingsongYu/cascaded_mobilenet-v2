@@ -82,10 +82,10 @@ cascaded convolutional neural network for facial point detection
 
 
 ## 第三阶段，训练level_2: 2_level_2
-由于 1_level_1/Code/5_crop_img 已经生成了 level_2所需的数据，并且打上关键点，供检查，因此 level_2直接从train开始
-	0_train, 同level_1
-	1_inference, 同level_1
-	2_evaluate,同level_1
+由于 1_level_1/Code/5_crop_img 已经生成了 level_2所需的数据，并且打上关键点，供检查，因此 level_2直接从train开始<br/>
+0_train, 同level_1<br/>
+1_inference, 同level_1<br/>
+2_evaluate,同level_1<br/>
 
 
 
