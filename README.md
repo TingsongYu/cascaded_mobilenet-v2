@@ -58,18 +58,17 @@ t表示“扩张”倍数，c表示输出通道数，n表示重复次数，s表�
 
 
 ## (2) 进入文件夹3_demo
-进入 3_demo/Code/,打开 inference , 更改你的caffe所在路径
-	sys.path.append('/home/xxx your caffe xxx/python')
-	sys.path.append('/home/xxx your caffe xxx/python/caffe')
-
+进入 3_demo/Code/,打开 inference , 更改你的caffe所在路径<br/>
+	sys.path.append('/home/xxx your caffe xxx/python')<br/>
+	sys.path.append('/home/xxx your caffe xxx/python/caffe')<br/>
 然后运行  sudo python inference.py, 检测出的图片保存在 3_demo/Result/draw_img/ 下
 
 # 3.复现训练过程
 简单介绍训练步骤，总共分三阶段，分别是 0_raw_data, 1_level_1, 2_level_2 
 
 ## 第一阶段，数据准备阶段： 0_raw_data 
-1. 从百度网盘下载好CelebA数据集，将CelebA\Img\img_celeba 复制到 0_raw_data/Data/ 下面，将CelebA\Anno\list_landmarks_celeba.txt复制到  0_raw_data/Data/ 并且重命名为celeba_label.txt
-2. 进入0_raw_data/, 运行divide_tr_te.py，将会划分好训练集，测试集，并且保存在0_raw_data/Data/ 下面 
+1. 从百度网盘下载好CelebA数据集，将CelebA\Img\img_celeba 复制到 0_raw_data/Data/ 下面，将CelebA\Anno\list_landmarks_celeba.txt复制到  0_raw_data/Data/ 并且重命名为celeba_label.txt<br/>
+2. 进入0_raw_data/, 运行divide_tr_te.py，将会划分好训练集，测试集，并且保存在0_raw_data/Data/ 下面 <br/>
 3. 运行 draw_point.py，将会在 0_raw_data/Result/draw_img/下获得 打上关键点的图片，用来检查图片以及标签是否正确
 
 
